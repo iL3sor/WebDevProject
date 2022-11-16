@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Garena Calories - Easy, Free Nutrition Facts and Recipe Search</title>
     <!-- Meta -->
@@ -10,7 +11,7 @@
     <meta name="description"
         content="Calculate nutrition facts from anything with CalorieNinjas's natural language nutrition tool.">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="./favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
     <link
         href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
         rel='stylesheet' type='text/css'>
@@ -78,10 +79,14 @@
             </header>
             <!--//header-->
 
-            <div class="center text-center">
+            <div class="center text-center" style="min-height:600px">
                 <div class="container landing-page-bg-panel">
                     <div class="branding">
                         <h1 class="main-line">Nutrition Facts and Recipes Now</h1>
+                        <hr>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                     <!--//branding-->
                     <div>
@@ -95,108 +100,6 @@
                             id="dailycalo" onclick="changecolor('dailycalo')">Daily Calo</button>
                         <button type="button" class="btn btn-outline-info" style="width:155px; color:white;" id="recipe"
                             onclick="changecolor('recipe')">Recipe</button>
-                    </div>
-                    <div class="tab-content">
-                        <div aria-labelledby="tab-one" class="text-center tab-pane fade show active" role="tabpanel"
-                            id="one">
-                            <div class="input-group demo-input">
-                                <input type="text" id="demo-input" class="form-control query-input"
-                                    placeholder="Enter some text to calculate nutrition information."
-                                    value="Last night we ordered a 14oz prime rib and mashed potatoes.">
-                            </div>
-                            <div class="demo" id="text-demo" style="display:none;">
-                                <div style="margin:20px;">
-                                    <h3>Nutrition Results</h3>
-                                </div>
-                                <table class="table table-striped">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Serving Size</th>
-                                            <th scope="col">Calories</th>
-                                            <th scope="col">Total Fat</th>
-                                            <th scope="col">Saturated Fat</th>
-                                            <th scope="col">Cholesterol</th>
-                                            <th scope="col">Sodium</th>
-                                            <th scope="col">Carbohydrates</th>
-                                            <th scope="col">Fiber</th>
-                                            <th scope="col">Sugar</th>
-                                            <th scope="col">Protein</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="result">
-                                    </tbody>
-                                </table>
-                            </div>
-                            <button type="button" id="submit" class="btn-lg btn-primary submit-button button-huge"><i
-                                    id="text-loader" class="fa fa-spinner fa-spin"></i>Get Nutrition</button>
-                        </div>
-
-                        <div aria-labelledby="tab-two" class="tab-pane fade" id="two" role="tabpanel">
-                            <div>
-                                <div class="image-upload">
-                                    <form>
-                                        <div class="custom-file file">
-                                            <input type="file" class="custom-file-input" name="file" id="file"
-                                                accept="image/png,image/jpeg">
-                                            <label class="custom-file-label image-input" for="file">Upload image
-                                                containing food text (e.g. recipe, menu)</label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div id="image-demo-container" class="demo" style="display: none;">
-                                    <div class="original-image-div">
-                                        <h3>Original Image</h3>
-                                        <div id="original-div" style="display: none;">
-                                            <img id="image" class="img-main">
-                                        </div>
-                                    </div>
-                                    <div id="image-demo" style="display:none;">
-                                        <h3>Nutrition Results</h3>
-                                        <table class="table table-striped">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Serving Size</th>
-                                                    <th scope="col">Calories</th>
-                                                    <th scope="col">Total Fat</th>
-                                                    <th scope="col">Saturated Fat</th>
-                                                    <th scope="col">Cholesterol</th>
-                                                    <th scope="col">Sodium</th>
-                                                    <th scope="col">Carbohydrates</th>
-                                                    <th scope="col">Fiber</th>
-                                                    <th scope="col">Sugar</th>
-                                                    <th scope="col">Protein</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="image-result">
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <button type="button" id="submit-image"
-                                    class="btn-lg btn-primary submit-button button-huge"><i id="image-loader"
-                                        class="fa fa-spinner fa-spin"></i>Get Nutrition</button>
-                            </div>
-                        </div>
-
-                        <div aria-labelledby="tab-three" class="text-center tab-pane fade show" role="tabpanel"
-                            id="three">
-                            <div class="input-group demo-input">
-                                <input type="text" id="demo-input-recipe" class="form-control query-input"
-                                    placeholder="Enter a dish." value="Mushroom risotto">
-                            </div>
-                            <div class="demo" id="recipe-demo" style="display:none;">
-                                <div style="margin:20px;">
-                                    <h3 id="result-recipe-title"></h3>
-                                </div>
-                                <div id="result-recipe">
-                                </div>
-                            </div>
-                            <button type="button" id="submit-recipe"
-                                class="btn-lg btn-primary submit-button button-huge"><i id="text-loader-recipe"
-                                    class="fa fa-spinner fa-spin"></i>Get Recipes</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -244,7 +147,7 @@
                     <div class="col-lg-6 feature-col">
                         <div class="inner-feature-col">
                             <h2>Biết được hiệu quả của việc tập luyện của bạn</h2>
-                            <p>Nói cho chúng tôi bạn đã làm gì và chúng tôi sẽ chon bạn biết bạn đã tiêu thụ được bao 
+                            <p>Nói cho chúng tôi bạn đã làm gì và chúng tôi sẽ chon bạn biết bạn đã tiêu thụ được bao
                                 nhiêu calo!</p>
                             </p>
                         </div>
@@ -310,39 +213,22 @@
 
 </html>
 <script>
-    document.getElementById('submit').innerHTML = 'Get Nutrition'
-    document.getElementById('demo-input').type = 'text'
-    document.getElementById('demo-input').defaultValue = 'Tối qua tui ăn salad với gà.'
     function changecolor(id) {
-        arr = ['textfood', 'menufood', 'caloburn', 'dailycalo', 'recipe']
-        for (i = 0; i < arr.length; i++) {
-            document.getElementById(arr[i]).style.background = 'transparent'
-        }
-        document.getElementById(id).style.backgroundColor = "#17a2b8"
         if (id == 'textfood') {
-            document.getElementById('submit').innerHTML = 'Get Nutrition'
-            document.getElementById('demo-input').type = 'text'
-            document.getElementById('demo-input').defaultValue = 'Tối qua tui ăn salad với gà.'
+            document.location="/textfud/"
         }
         else if (id == 'dailycalo') {
-            document.getElementById('submit').innerHTML = 'Daily Calo'
-            document.getElementById('demo-input').type = 'text'
-            document.getElementById('demo-input').defaultValue = 'Tui nặng 75kg'
+            // document.location="/dailycalo/"
+            alert('nooooo')
         }
         else if (id == 'menufood') {
-            document.getElementById('submit').innerHTML = 'Get Nutrition'
-            document.getElementById('demo-input').type = 'file'
-            document.getElementById('demo-input').defaultValue = 'Input menu food'
+            document.location="/menufud/"
         }
         else if (id == 'caloburn') {
-            document.getElementById('submit').innerHTML = 'Get Burned Calo'
-            document.getElementById('demo-input').type = 'text'
-            document.getElementById('demo-input').defaultValue = 'Tui chạy bộ 50 phút'
+            alert('nooooo')
         }
         else if (id == 'recipe') {
-            document.getElementById('submit').innerHTML = 'Get Recipe'
-            document.getElementById('demo-input').type = 'text'
-            document.getElementById('demo-input').defaultValue = 'Tui đang có thịt chó và mắm tôm'
+            document.location="/recipe/"
         }
     }
 </script>

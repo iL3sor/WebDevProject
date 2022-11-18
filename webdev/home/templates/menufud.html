@@ -96,70 +96,70 @@
                         <button type="submit" class="btn btn-primary btn-lg"
                             style="color:#339597;width: 200px;height: 55px; font-size:25px;">Get Nutrition</button>
                     </form>
+                    {% if res %}
+                    <div style="background-color: white;  margin-bottom: 40px;">
+                        <div style="margin:20px;">
+                            <h3>Nutrition Results</h3>
+                        </div>
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Serving Size</th>
+                                    <th scope="col">Calories</th>
+                                    <th scope="col">Total Fat</th>
+                                    <th scope="col">Saturated Fat</th>
+                                    <th scope="col">Cholesterol</th>
+                                    <th scope="col">Sodium</th>
+                                    <th scope="col">Carbohydrates</th>
+                                    <th scope="col">Fiber</th>
+                                    <th scope="col">Sugar</th>
+                                    <th scope="col">Protein</th>
+                                </tr>
+                            </thead>
+                            <tbody id="result">
+                                {% for key in res.items %}
+                                <tr>
+                                    <td>
+                                        {{key.name}}
+                                    </td>
+                                    <td>
+                                        {{key.serving_size_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.calories}}g
+                                    </td>
+                                    <td>
+                                        {{key.fat_total_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.fat_saturated_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.cholesterol_mg}}mg
+                                    </td>
+                                    <td>
+                                        {{key.sodium_mg}}mg
+                                    </td>
+                                    <td>
+                                        {{key.carbohydrates_total_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.fiber_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.sugar_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.protein_g}}g
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
                 </div>
-                {% if res %}
-                <div style="background-color: white;width: 1150px; margin-left: 12%; margin-bottom: 40px;">
-                    <div style="margin:20px;">
-                        <h3>Nutrition Results</h3>
-                    </div>
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Serving Size</th>
-                                <th scope="col">Calories</th>
-                                <th scope="col">Total Fat</th>
-                                <th scope="col">Saturated Fat</th>
-                                <th scope="col">Cholesterol</th>
-                                <th scope="col">Sodium</th>
-                                <th scope="col">Carbohydrates</th>
-                                <th scope="col">Fiber</th>
-                                <th scope="col">Sugar</th>
-                                <th scope="col">Protein</th>
-                            </tr>
-                        </thead>
-                        <tbody id="result">
-                            {% for key in res.items %}
-                            <tr>
-                                <td>
-                                    {{key.name}}
-                                </td>
-                                <td>
-                                    {{key.serving_size_g}}g
-                                </td>
-                                <td>
-                                    {{key.calories}}g
-                                </td>
-                                <td>
-                                    {{key.fat_total_g}}g
-                                </td>
-                                <td>
-                                    {{key.fat_saturated_g}}g
-                                </td>
-                                <td>
-                                    {{key.cholesterol_mg}}mg
-                                </td>
-                                <td>
-                                    {{key.sodium_mg}}mg
-                                </td>
-                                <td>
-                                    {{key.carbohydrates_total_g}}g
-                                </td>
-                                <td>
-                                    {{key.fiber_g}}g
-                                </td>
-                                <td>
-                                    {{key.sugar_g}}g
-                                </td>
-                                <td>
-                                    {{key.protein_g}}g
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    </div>
-                {% endif %}
             </div>
         </div>
     </div>

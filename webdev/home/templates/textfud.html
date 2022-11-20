@@ -1,0 +1,295 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Garena Calories - Easy, Free Nutrition Facts and Recipe Search</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calculate nutrition facts from anything with CalorieNinjas's natural language nutrition tool.">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link
+        href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+        rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"
+        integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH"
+        crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <!-- <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static '/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Plugins CSS -->
+    <!-- <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css"> -->
+    <link rel="stylesheet" href="{% static '/plugins/elegant_font/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Theme CSS -->
+    <!-- <link id="theme-style" rel="stylesheet" href="assets/css/styles.css"> -->
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149694083-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149694083-1');
+    </script>
+</head>
+
+<body>
+    <div class="home-page page-wrapper">
+        <div class="landing-page-bg">
+            <header class="header" style="background-color:transparent;">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-custom">
+                        <div class="branding">
+                            <div class="logo">
+                                <a class="navbar-brand" href="/">
+                                    <img src="{% static '/images/calorieninjas_logo_small_white.png' %}" />
+                                    <div class="logo-name">Garena Calories</div>
+                                </a>
+                            </div>
+                        </div>
+                        <!--//branding-->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-navbar"
+                            aria-controls="header-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                                <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+                            </span>
+                        </button>
+                        <div id="header-navbar"
+                            class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item nav-button highlight">
+                                    <button id="login-button" class="nav-link btn">Login</button>
+                                </li>
+                                <li class="nav-item nav-button highlight">
+                                    <button id="signup-button" class="nav-link btn">Sign Up</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!--//container-->
+            </header>
+            <!--//header-->
+
+            <div class="center text-center" style="min-height:600px">
+                <div class="container landing-page-bg-panel">
+                    <div class="branding">
+                        <h1 class="main-line">Nutrition Facts and Recipes Now</h1>
+                        <hr>
+                        <br>
+                    </div>
+                    <!--//branding-->
+                    <form action="/textfud/" method="post" >
+                        <input class="form-control" type="text" id="formText" style="height: 45px" name='textfood'
+                            required placeholder="Input a text containing food" value="Last night we ordered a 14oz prime rib and mashed potatoes."></input>
+                        <label for="formText" style="color: white; font-size: 20px;"></label>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-lg"
+                            style="color:#339597;width: 200px;height: 55px; font-size:25px;">Get Nutrition</button>
+                    </form>
+                    {% if res %}
+                    <div style="background-color: white;  margin-bottom: 40px;">
+                        <div style="margin:20px;">
+                            <h3>Nutrition Results</h3>
+                        </div>
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Serving Size</th>
+                                    <th scope="col">Calories</th>
+                                    <th scope="col">Total Fat</th>
+                                    <th scope="col">Saturated Fat</th>
+                                    <th scope="col">Cholesterol</th>
+                                    <th scope="col">Sodium</th>
+                                    <th scope="col">Carbohydrates</th>
+                                    <th scope="col">Fiber</th>
+                                    <th scope="col">Sugar</th>
+                                    <th scope="col">Protein</th>
+                                </tr>
+                            </thead>
+                            <tbody id="result">
+                                {% for key in res.items %}
+                                <tc>
+
+                                </tc>
+                                <tr>
+                                    <td>
+                                        {{key.name}}
+                                    </td>
+                                    <td>
+                                        {{key.serving_size_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.calories}}g
+                                    </td>
+                                    <td>
+                                        {{key.fat_total_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.fat_saturated_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.cholesterol_mg}}mg
+                                    </td>
+                                    <td>
+                                        {{key.sodium_mg}}mg
+                                    </td>
+                                    <td>
+                                        {{key.carbohydrates_total_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.fiber_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.sugar_g}}g
+                                    </td>
+                                    <td>
+                                        {{key.protein_g}}g
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="main-section cards-section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="{% static '/images/textdemo1.png' %}" class="feature-img" alt="text demo">
+                </div>
+                <div class="col-lg-6 feature-col">
+                    <div class="inner-feature-col">
+                        <h2>Nhập bất cứ thứ gì</h2>
+                        <p>Không cần phải điều chỉnh gì. Phần mềm của chúng tôi có thể đọc bất kỳ thông tin gì bạn
+                            nhập và trích xuất chính xác thông tin dinh dưỡng.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row reverse-small">
+                <div class="col-lg-6 feature-col">
+                    <div class="inner-feature-col">
+                        <h2>Hoặc tải lên một thực đơn</h2>
+                        <p>Công cụ chữ - hình sẽ tự động phát hiện món ăn và tính toán thông tin dinh dưỡng. Phù hợp
+                            với công thức, và thực đơn nhà hàng!</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{% static '/images/imagedemo1.png' %}" class="feature-img" alt="image demo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="{% static '/images/recipe.jpeg' %}" class="feature-img" alt="text demo">
+                </div>
+                <div class="col-lg-6 feature-col">
+                    <div class="inner-feature-col">
+                        <h2>Tìm kiếm hơn 100,000 công thức</h2>
+                        <p>Từ ăn nhẹ đến tráng miệng, khai vị cho đến món chính, tìm kiếm công thức cả trong nước
+                            lẫn nước ngoài!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row reverse-small">
+                <div class="col-lg-6 feature-col">
+                    <div class="inner-feature-col">
+                        <h2>Biết được hiệu quả của việc tập luyện của bạn</h2>
+                        <p>Nói cho chúng tôi bạn đã làm gì và chúng tôi sẽ chon bạn biết bạn đã tiêu thụ được bao
+                            nhiêu calo!</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{% static '/images/caloburn1.png' %}" class="feature-img" alt="image demo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="{% static '/images/dailycalo1.png' %}" class="feature-img" alt="text demo">
+                </div>
+                <div class="col-lg-6 feature-col">
+                    <div class="inner-feature-col">
+                        <h2>Không phải suy nghĩ nhiều về thực đơn hằng ngày</h2>
+                        <p>Với thể trạng của bạn, chúng tôi sẽ giúp bạn giữ gìn sức khỏe của mình với một thực đơn
+                            phù hợp cho bạn!</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="main-section cards-section text-center">
+        <div class="container">
+            <div style="margin-bottom: 40px;">
+                <h2>Amazing App</h2>
+            </div>
+        </div>
+    </section>
+    </div>
+    <!--//page-wrapper-->
+
+    <footer class="footer text-center">
+        <div>
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+            <div class="footer-menu row">
+            </div>
+            <div>
+                <p class="footer-text">© 2020 ANTN. Tho - Khoa - Minh.</p>
+            </div>
+        </div>
+        <!--//container-->
+    </footer>
+    <!--//footer-->
+
+
+    <!-- Main Javascript -->
+
+    <script type="text/javascript" src="{% static '/plugins/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/plugins/stickyfill/dist/stickyfill.min.js' %}"></script>
+    <script src="{% static '/js/vendor/aws-cognito-sdk.min.js' %}"></script>
+    <script src="{% static '/js/vendor/amazon-cognito-identity.min.js' %}"></script>
+    <script src="{% static '/js/config.js' %}"></script>
+    <script src="{% static '/js/cognito-auth.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
+
+
+</body>
+
+</html>
+<script>
+    function changecolor(id) {
+        if (id == 'textfood') {
+            document.location = "/textfud/"
+        }
+        else if (id == 'dailycalo') {
+            // document.location="/dailycalo/"
+            alert('nooooo')
+        }
+        else if (id == 'menufood') {
+            document.location = "/menufud/"
+        }
+        else if (id == 'caloburn') {
+            alert('nooooo')
+        }
+        else if (id == 'recipe') {
+            document.location = "/recipe/"
+        }
+    }
+</script>

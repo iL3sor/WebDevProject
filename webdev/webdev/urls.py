@@ -23,4 +23,5 @@ urlpatterns = [
     path('textfud/', include('textfud.urls')),
     path('menufud/', include('menufud.urls')),
     path('recipe/', include('recipe.urls')),
+    path('authentication/', include('authentication.urls')),
 ]

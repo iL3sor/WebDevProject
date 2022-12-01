@@ -19,6 +19,9 @@ from django.core.files.storage import FileSystemStorage
 def index(request):
   template = loader.get_template('menufud.html')
   res = None
+  userauth = None
+  if(request.user.is_authenticated):
+        userauth = request.user
   if(request.method=='POST') and request.FILES['fileupload']:
     myfile = request.FILES['fileupload']
     fs = FileSystemStorage()
@@ -29,6 +32,7 @@ def index(request):
     r = requests.post(api_url, files=files,headers={'X-Api-Key': '3cYp06EjR3L15nU93CNiFA==nbMdfDFaPv8jImVt'})
     res = r.json()
   context = {
-    'res':res
+    'res':res,
+    'user':userauth
   }
   return HttpResponse(template.render(context))

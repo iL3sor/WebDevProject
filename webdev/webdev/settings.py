@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST_PASSWORD = 'Ehzbnjqbinfpsdlsa'
+EMAIL_HOST_USER = 'garenacalories@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Application definition
 

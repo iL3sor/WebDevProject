@@ -8,6 +8,9 @@ import json
 @csrf_exempt
 def index(request):
     res = None
+    userauth = None
+    if(request.user.is_authenticated):
+        userauth = request.user
     template = loader.get_template('textfud.html')
     if(request.method=='POST' and request.POST['textfood']):
         data = request.POST['textfood']
@@ -16,6 +19,7 @@ def index(request):
         response = requests.get(api_url + query, headers={'X-Api-Key': '3cYp06EjR3L15nU93CNiFA==nbMdfDFaPv8jImVt','Origin':'api.calorieninjas.com'})
         res = response.json()
     context = {
-    'res':res
+    'res':res,
+    'user': userauth
     }
     return HttpResponse(template.render(context))

@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -26,13 +26,13 @@
         <!-- FontAwesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
         <!-- Global CSS -->
-        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+        <link rel="stylesheet" href="{% static '/plugins/bootstrap/css/bootstrap.min.css' %}">   
         <!-- Plugins CSS -->    
-        <link rel="stylesheet" href="assets/plugins/prism/prism.css">
-        <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">  
+        <link rel="stylesheet" href="{% static '/plugins/prism/prism.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/elegant_font/css/style.css' %}">  
           
         <!-- Theme CSS -->
-        <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+        <link id="theme-style" rel="stylesheet" href="{% static '/css/styles.css' %}">
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149694083-1"></script>
@@ -50,8 +50,8 @@
                 <nav class="navbar navbar-expand-lg navbar-custom">
                     <div class="branding">
                         <div class="logo">
-                            <a class="navbar-brand" href="index.html">
-                                <img src="images/calorieninjas_logo_small_white.png"/>
+                            <a class="navbar-brand" href="/">
+                                <img src="{% static 'images/calorieninjas_logo_small_white.png' %}"/>
                                 <div class="logo-name">Garena Calories</div>
                             </a>
                         </div>          
@@ -61,7 +61,7 @@
                             <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
                         </span>
                       </button>
-                    <div id="header-navbar" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                    <!-- <div id="header-navbar" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item nav-button highlight">
                                 <button id="login-button" class="nav-link btn">Login</button>
@@ -70,7 +70,7 @@
                                 <button id="signup-button" class="nav-link btn">Sign Up</button>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </nav>
             </div><!--//container-->
         </header><!--//header-->
@@ -80,24 +80,36 @@
                 <section class="form-wrap text-center signin">
                     <div id="doc-header" class="doc-header text-center">
                         <h1 class="doc-title"><i class="icon icon_profile"></i> Register</h1>
+                        {% if message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                        </div>
+                        {% endif %}
                     </div><!--//doc-header--> 
                     <div id="registerError" class="alert alert-danger" style="display:none;"></div>
                     <div id="registerSuccess" class="alert alert-success" style="display:none;"></div>
-                    <form id="registrationForm">
+                    <form action="/authentication/signup" method="post">
                         <div class="form-field">
-                            <input type="email" class="form-control" id="emailInputRegister" placeholder="Email" required>
+                            {% if email %}
+                            <input type="text" class="form-control" id="usernameInputRegister" placeholder="Username" required name="username" value={{username}}>
+                            <input type="email" class="form-control" id="emailInputRegister" placeholder="Email" required name="emailinfo" value={{email}}>
+                            {% else %}
+                            <input type="text" class="form-control" id="usernameInputRegister" placeholder="Username" required name="username">
+                            <input type="email" class="form-control" id="emailInputRegister" placeholder="Email" required name="emailinfo">
+                            {% endif %}
                         </div>
                         <div class="form-field">
                             <p style="font-size:12px;">Password must container at least 8 characters and 1 number.</p>
-                            <input type="password" class="form-control" id="passwordInputRegister" placeholder="Password" pattern=".*" required>
+                            <input type="password" class="form-control" id="passwordInputRegister" placeholder="Password" pattern=".*" required name="passinfo">
                         </div>
                         <div class="form-field">
-                            <input type="password" class="form-control" id="password2InputRegister" placeholder="Confirm Password" pattern=".*" required>
+                            <input type="password" class="form-control" id="password2InputRegister" placeholder="Confirm Password" pattern=".*" required name="passinfo2">
                         </div>
                         <div class="form-field">
-                            <button class="btn btn-primary" type="submit">Register</button>
+                            <button type="submit" class="btn btn-primary btn-lg"
+                            style="color:#339597;width: 150px;height: 50px; font-size:20px;">Sign up</button>
                             <br>
-                            <p>Already have an account? <a href="signin.html">Login</a></p>
+                            <p>Already have an account? <a href="/authentication/login">Login</a></p>
                         </div>
                     </form>
                 </section>
@@ -115,13 +127,13 @@
             </div><!--//container-->
         </footer><!--//footer-->
 
-        <script src="assets/js/vendor/jquery-3.1.0.js"></script>
-        <script src="assets/js/vendor/bootstrap.min.js"></script>
-        <script src="assets/js/vendor/aws-cognito-sdk.min.js"></script>
-        <script src="assets/js/vendor/amazon-cognito-identity.min.js"></script>
-        <script src="assets/js/config.js"></script>
-        <script src="assets/js/cognito-auth.js"></script>
-        <script type="text/javascript" src="assets/js/main.js"></script>
-        <script type="text/javascript" src="assets/js/redirect.js"></script>
+        <script src="{% static '/js/vendor/jquery-3.1.0.js' %}"></script>
+        <script src="{% static '/js/vendor/bootstrap.min.js' %}"></script>
+        <script src="{% static '/js/vendor/aws-cognito-sdk.min.js' %}"></script>
+        <script src="{% static '/js/vendor/amazon-cognito-identity.min.js' %}"></script>
+        <script src="{% static '/js/config.js' %}"></script>
+        <script src="{% static '/js/cognito-auth.js' %}"></script>
+        <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
+        <script type="text/javascript" src="{% static '/js/redirect.js' %}"></script>
     </body>
 </html>

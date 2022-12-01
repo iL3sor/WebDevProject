@@ -74,10 +74,10 @@
                             {% else %}
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item nav-button highlight">
-                                    <button type="button" class="btn btn-outline-success" style="background-color: transparent;" onclick="document.location='/authentication/login'">Login</button>
+                                    <button type="button" class="btn btn-outline-success" style="background-color: transparent; width: 100px;" onclick="document.location='/authentication/login'" onmouseover="document.getElementById('login').style.background='#4c4b4d'" id="login" onmouseleave="document.getElementById('login').style.background='transparent'" >Login</button>
                                 </li>
                                 <li class="nav-item nav-button highlight">
-                                    <button type="button" class="btn btn-outline-success" style="background-color: transparent;" onclick="document.location='/authentication/signup'">Signup</button>
+                                    <button type="button" class="btn btn-outline-success" style="background-color: transparent; width: 100px;" onclick="document.location='/authentication/signup'" onmouseover="document.getElementById('signup').style.background='#4c4b4d'" id="signup" onmouseleave="document.getElementById('signup').style.background='transparent'">Signup</button>
                                 </li>
                             </ul>
                             {% endif %}
@@ -249,7 +249,7 @@
             document.location = "/menufud/"
         }
         else if (id == 'caloburn') {
-            alert('nooooo')
+            document.location = "/caloburn/"
         }
         else if (id == 'recipe') {
             document.location = "/recipe/"

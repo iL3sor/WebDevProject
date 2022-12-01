@@ -96,73 +96,34 @@
                         <br>
                     </div>
                     <!--//branding-->
-                    <form action="/textfud/" method="post" >
-                        <input class="form-control" type="text" id="formText" style="height: 45px" name='textfood'
-                            required placeholder="Input a text containing food" value="Last night we ordered a 14oz prime rib and mashed potatoes."></input>
-                        <label for="formText" style="color: white; font-size: 20px;"></label>
+                    <form action="/caloburn/" method="post" >
+                        <input class="form-control" type="text" id="formText" style="height: 45px" name='activity'
+                            required placeholder="Input an activity with format activity : nums of mins "></input>
+                        <label for="formText" style="color: white; font-size: 20px;">Input an activity with format activity : nums of mins (e.g. Skiing : 30 )</label>
                         <br>
                         <button type="submit" class="btn btn-primary btn-lg"
-                            style="color:#339597;width: 200px;height: 55px; font-size:25px;">Get Nutrition</button>
+                            style="color:#339597;width: 200px;height: 55px; font-size:25px;">Get Calories</button>
                     </form>
                     {% if res %}
                     <div style="background-color: white;  margin-bottom: 40px;">
                         <div style="margin:20px;">
-                            <h3 style="color: red">Nutrition Results</h3>
+                            <h3 style="color: red">Calo Counter Result</h3>
                         </div>
                         <table class="table table-striped">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Serving Size</th>
-                                    <th scope="col">Calories</th>
-                                    <th scope="col">Total Fat</th>
-                                    <th scope="col">Saturated Fat</th>
-                                    <th scope="col">Cholesterol</th>
-                                    <th scope="col">Sodium</th>
-                                    <th scope="col">Carbohydrates</th>
-                                    <th scope="col">Fiber</th>
-                                    <th scope="col">Sugar</th>
-                                    <th scope="col">Protein</th>
+                                    <th scope="col">Total Calories</th>
                                 </tr>
                             </thead>
                             <tbody id="result">
-                                {% for key in res.items %}
-                                <tc>
-
-                                </tc>
+                                {% for key in res %}
                                 <tr>
                                     <td>
                                         {{key.name}}
                                     </td>
                                     <td>
-                                        {{key.serving_size_g}}g
-                                    </td>
-                                    <td>
-                                        {{key.calories}}g
-                                    </td>
-                                    <td>
-                                        {{key.fat_total_g}}g
-                                    </td>
-                                    <td>
-                                        {{key.fat_saturated_g}}g
-                                    </td>
-                                    <td>
-                                        {{key.cholesterol_mg}}mg
-                                    </td>
-                                    <td>
-                                        {{key.sodium_mg}}mg
-                                    </td>
-                                    <td>
-                                        {{key.carbohydrates_total_g}}g
-                                    </td>
-                                    <td>
-                                        {{key.fiber_g}}g
-                                    </td>
-                                    <td>
-                                        {{key.sugar_g}}g
-                                    </td>
-                                    <td>
-                                        {{key.protein_g}}g
+                                        {{key.total_calories}}
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -189,23 +150,3 @@
 </body>
 
 </html>
-<script>
-    function changecolor(id) {
-        if (id == 'textfood') {
-            document.location = "/textfud/"
-        }
-        else if (id == 'dailycalo') {
-            // document.location="/dailycalo/"
-            alert('nooooo')
-        }
-        else if (id == 'menufood') {
-            document.location = "/menufud/"
-        }
-        else if (id == 'caloburn') {
-            alert('nooooo')
-        }
-        else if (id == 'recipe') {
-            document.location = "/recipe/"
-        }
-    }
-</script>

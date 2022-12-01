@@ -24,4 +24,5 @@ urlpatterns = [
     path('menufud/', include('menufud.urls')),
     path('recipe/', include('recipe.urls')),
     path('authentication/', include('authentication.urls')),
+    path('caloburn/', include('caloburn.urls')),
 ]

@@ -11,6 +11,9 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib import messages 
 from webdev import settings
 from django.core.mail import send_mail
+import random
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.hashers import make_password
 
 def checknum (s):
     for i in s:
@@ -92,6 +95,13 @@ def _logout(request):
     logout(request)
     return redirect('/')
 
+def makepass():
+    charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    newpass = charset[random.randint(52,len(charset)-1)]
+    for i in range(7):
+        newpass += charset[random.randint(0,len(charset)-1)]
+    return newpass
+    
 @csrf_exempt
 def _passforgot(request):
     template = loader.get_template('forgotpassword.html')
@@ -99,11 +109,15 @@ def _passforgot(request):
         mail = request.POST['emailinfo']
         user = User.objects.filter(email=mail)
         if user is not None:
-            subject = "YOUR PASSWORD"
-            message = 'Hello ' + user[0].username +'!!\n' + 'Here your password: ' + user[0].password
+            subject = "YOUR NEW PASSWORD"
+            newpass = makepass()
+            print(request.POST)
+            user[0].set_password(newpass)
+            user[0].save()
+            message = 'Hello ' + user[0].username +'!!\n' + 'Here your new password: ' + newpass
             to_list = [user[0].email]
             from_email = settings.EMAIL_HOST_USER
-            send_mail(subject,message,from_email,to_list,fail_silently=True)
+            #send_mail(subject,message,from_email,to_list,fail_silently=True)
             messages.success(request,"Your password had been seed to your email") 
             return redirect('login')
         else:
